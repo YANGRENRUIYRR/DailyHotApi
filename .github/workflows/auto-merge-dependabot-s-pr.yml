@@ -1,0 +1,22 @@
+name: Auto-merge dependabot PRs
+
+on:
+  dependabot.pull_request:
+    types: [create]
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Auto-merge dependabot PRs
+        uses: ahmadnassri/action-dependabot-auto-merge@v1.0.0
+        with:
+          # 在这里设置你的仓库拥有者名称和仓库名称
+          REPO_OWNER: 'YANGRENRUIYRR'
+          REPO_NAME: 'DailyHotApi'
+          # 设置你想要自动合并的分支名
+          BRANCH_NAME: 'master'
+          # 设置GitHub Token的secret名称，该token需要有仓库的admin权限
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
